@@ -1,0 +1,30 @@
+{
+    "name": "solmar/trivia",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "solmar",
+            "email": "solmar@dexeus.com"
+        }
+    ],
+    "description": "kata legacy code",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.org"
+        }
+    ],
+    "config":{
+        "secure-http": false
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^7"
+    },
+    "autoload": {
+        "psr-4": {
+            "": ["src/", "tests/", "./" ]
+        }
+    }
+}
