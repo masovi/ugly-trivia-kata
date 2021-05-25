@@ -4,12 +4,13 @@ use PHPUnit\Framework\TestCase;
 
 class GameTest extends TestCase
 {
-    const GOLDEN_MASTER = "golden-master.txt";
+    const GOLDEN_MASTER = __DIR__ . "\\golden-master.txt";
+    const PROGRAM_PATH = __DIR__ . "\\..\\src\\GameRunner.php";
 
     protected function setUp()
     {
         $this->createGoldenMaster();
-        $this->generateOutputs(5);
+        $this->generateOutputs(50);
     }
 
     public function testShouldCreateGoldenMaster()
@@ -25,8 +26,8 @@ class GameTest extends TestCase
     private function generateOutputs(int $seed)
     {
         do {
-            exec("php ../src/GameRunner.php", $output);
-            file_put_contents(self::GOLDEN_MASTER, join($output, PHP_EOL), FILE_APPEND);
+            exec("php " . self::PROGRAM_PATH, $output);
+            file_put_contents( self::GOLDEN_MASTER, join($output, PHP_EOL), FILE_APPEND);
             --$seed;
         } while ($seed > 0);
     }
