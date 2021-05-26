@@ -18,6 +18,14 @@ class GameTest extends TestCase
         $this->assertTrue(file_exists(self::GOLDEN_MASTER));
     }
 
+    public function testMakeScienceQuestion()
+    {
+        $game = new TestableGame();
+        $game->askQuestion();
+        $actual = count($game->scienceQuestions);
+        $this->assertEquals(49, $actual);
+    }
+
     private function createGoldenMaster()
     {
         file_put_contents(self::GOLDEN_MASTER, "");
@@ -27,7 +35,7 @@ class GameTest extends TestCase
     {
         do {
             exec("php " . self::PROGRAM_PATH, $output);
-            file_put_contents( self::GOLDEN_MASTER, join($output, PHP_EOL), FILE_APPEND);
+            file_put_contents(self::GOLDEN_MASTER, join($output, PHP_EOL), FILE_APPEND);
             --$seed;
         } while ($seed > 0);
     }
