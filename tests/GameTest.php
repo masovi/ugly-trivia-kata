@@ -33,6 +33,19 @@ class GameTest extends TestCase
         $this->assertEquals("49", $actual);
     }
 
+    public function testPlayWithSinglePlayerShouldReturnFalse() {
+        $game = new TestableGame("Rock", new ConcreteStrategy());
+        $game->add("Player 1");
+        $this->assertFalse($game->isPlayable());
+    }
+
+    public function testPlayWithTwoPlayersOrMoreShouldReturnTrue() {
+        $game = new TestableGame("Rock", new ConcreteStrategy());
+        $game->add("Player 1");
+        $game->add("Player 2");
+        $this->assertTrue($game->isPlayable());
+    }
+
     private function createGoldenMaster()
     {
         file_put_contents(self::GOLDEN_MASTER, "");
