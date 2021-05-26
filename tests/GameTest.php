@@ -20,10 +20,17 @@ class GameTest extends TestCase
 
     public function testMakeScienceQuestion()
     {
-        $game = new TestableGame();
+        $game = new TestableGame("Science");
         $game->askQuestion();
         $actual = count($game->scienceQuestions);
         $this->assertEquals(49, $actual);
+    }
+
+    public function testMakePopQuestion() {
+        $game = new TestableGame("Pop");
+        $game->askQuestion();
+        $actual = count($game->popQuestions);
+        $this->assertEquals("49", $actual);
     }
 
     private function createGoldenMaster()
